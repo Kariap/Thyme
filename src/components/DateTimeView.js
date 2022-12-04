@@ -5,13 +5,19 @@ import {useTheme} from '@react-navigation/native';
 import moment from 'moment';
 import {useEffect, useState} from 'react';
 
-export const DateTimeView = ({dateTime}) => {
+export const DateTimeView = ({dateTime, currentTmzInfo}) => {
   const {colors} = useTheme();
   const styles = makeStyles(colors);
   const [currentDateTime, setCurrentDateTime] = useState(dateTime);
   useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentDateTime(new Date());
+    setCurrentDateTime(dateTime);
+    let timer;
+    timer = setInterval(() => {
+      setCurrentDateTime(prev => {
+        const newDate = new Date(prev);
+        newDate.setSeconds(newDate.getSeconds() + 1);
+        return newDate;
+      });
     }, 1000);
     return () => clearInterval(timer);
   }, [dateTime]);
@@ -51,7 +57,7 @@ const makeStyles = (colors: any) =>
     },
     timeText: {
       fontSize: 32,
-      marginTop: 8,
+      marginTop: 0,
       fontWeight: '700',
       color: colors.primaryText,
     },
