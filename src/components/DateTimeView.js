@@ -21,7 +21,7 @@ export const DateTimeView = ({dateTime}) => {
         {moment(currentDateTime).format('dddd, DD MMM')}
       </Text>
       <Text style={styles.timeText}>
-        {moment(currentDateTime).format('hh:MM:ss')}
+        {moment(currentDateTime).format('hh:mm:ss')}
         <Text style={styles.merStyle}>
           {' ' + moment(currentDateTime).format('A')}
         </Text>
