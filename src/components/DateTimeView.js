@@ -21,7 +21,15 @@ export const DateTimeView = ({dateTime}) => {
         {moment(currentDateTime).format('dddd, DD MMM')}
       </Text>
       <Text style={styles.timeText}>
-        {moment(currentDateTime).format('hh:mm:ss')}
+        {moment(currentDateTime).format('hh')}
+        <Text style={styles.colonStyle}>{':'}</Text>
+        <Text style={styles.timeText}>
+          {moment(currentDateTime).format('mm')}
+        </Text>
+        <Text style={styles.colonStyle}>{':'}</Text>
+        <Text style={styles.timeText}>
+          {moment(currentDateTime).format('ss')}
+        </Text>
         <Text style={styles.merStyle}>
           {' ' + moment(currentDateTime).format('A')}
         </Text>
@@ -29,7 +37,6 @@ export const DateTimeView = ({dateTime}) => {
     </View>
   );
 };
-
 const makeStyles = (colors: any) =>
   StyleSheet.create({
     container: {
@@ -50,6 +57,12 @@ const makeStyles = (colors: any) =>
     },
     merStyle: {
       fontSize: 16,
+      marginTop: 8,
+      fontWeight: '700',
+      color: colors.primaryText,
+    },
+    colonStyle: {
+      fontSize: 24,
       marginTop: 8,
       fontWeight: '700',
       color: colors.primaryText,
