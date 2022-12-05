@@ -6,7 +6,13 @@ import {Thymers} from './Thymers';
 import {ThymerCreator} from './ThymeCreator';
 import {getMilliseconds} from '../../../utils/DateUtils';
 import moment from 'moment';
-import Animated, { BounceIn, BounceInUp, FadeInUp, FadeOutUp } from "react-native-reanimated";
+import Animated, {
+  BounceIn,
+  BounceInUp,
+  FadeInUp,
+  FadeOutUp,
+} from 'react-native-reanimated';
+import { EmptyThymers } from "../../../components/EmptyThymers";
 export const TimersView = () => {
   const {colors} = useTheme();
   const styles = makeStyles(colors);
@@ -23,7 +29,7 @@ export const TimersView = () => {
           alignSelf: 'stretch',
           flexDirection: 'row',
           justifyContent: 'space-between',
-          paddingBottom:16,
+          paddingBottom: 16,
         }}>
         <Text style={styles.thymerText}>Thymers</Text>
         <TouchableOpacity
@@ -43,14 +49,20 @@ export const TimersView = () => {
           <Text style={styles.addThymer}>+</Text>
         </TouchableOpacity>
       </View>
-      <Thymers
-        thymers={thymers}
-        onDelete={id => {
-          deleteItemById(id);
-        }}
-      />
+      {thymers.length > 0 ? (
+        <Thymers
+          thymers={thymers}
+          onDelete={id => {
+            deleteItemById(id);
+          }}
+        />
+      ) : (
+        <EmptyThymers/>
+      )}
       {showAddThymer && (
-        <Animated.View style={styles.creatorModal} entering={FadeInUp.duration(300)}>
+        <Animated.View
+          style={styles.creatorModal}
+          entering={FadeInUp.duration(300)}>
           <ThymerCreator
             onAddClicked={(hours, minutes, seconds) => {
               const timerTime = new Date();
@@ -83,6 +95,7 @@ const makeStyles = (colors: any) =>
       backgroundColor: colors.background,
       alignItems: 'center',
       padding: 16,
+      borderRadius: 20,
       justifyContent: 'center',
     },
     thymerText: {
@@ -95,6 +108,7 @@ const makeStyles = (colors: any) =>
       fontWeight: '600',
       color: colors.primaryText,
       textAlignVertical: 'center',
+      lineHeight: 27,
     },
     creatorModal: {
       position: 'absolute',

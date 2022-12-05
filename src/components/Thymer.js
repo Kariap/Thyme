@@ -5,12 +5,15 @@ import * as React from 'react';
 import {CountdownCircleTimer} from 'react-native-countdown-circle-timer';
 import {useTheme} from '@react-navigation/native';
 import Animated, {
-  BounceInDown, BounceInLeft,
+  BounceInDown,
+  BounceInLeft,
   BounceInUp,
-  BounceOut, FadeInUp,
+  BounceOut,
+  FadeInUp,
   FadeOut,
-  FadeOutRight, Layout,
-} from "react-native-reanimated";
+  FadeOutRight,
+  Layout,
+} from 'react-native-reanimated';
 
 export const Thymer = ({thymer, onDelete}) => {
   const [millis, setMillis] = useState(thymer.timer);
@@ -59,9 +62,9 @@ export const Thymer = ({thymer, onDelete}) => {
                   fontSize: 16,
                   color: colors.primaryText,
                 }}>
-                {`${(hours < 9 ? '0' : '') + hours}:${
-                  (minutes < 9 ? '0' : '') + minutes
-                }:${(seconds < 9 ? '0' : '') + seconds}`}
+                {`${(hours <= 9 ? '0' : '') + hours}:${
+                  (minutes <= 9 ? '0' : '') + minutes
+                }:${(seconds <= 9 ? '0' : '') + seconds}`}
               </Text>
               {isPaused && (
                 <Text
@@ -81,8 +84,7 @@ export const Thymer = ({thymer, onDelete}) => {
         <TouchableOpacity
           activeOpacity={0.8}
           style={{
-            borderWidth: 0.5,
-            borderColor: colors.background,
+            backgroundColor: colors.background,
             paddingVertical: 12,
             borderRadius: 12,
             alignItems: 'center',
@@ -92,7 +94,10 @@ export const Thymer = ({thymer, onDelete}) => {
           onPress={() => {
             setIsPaused(prev => !prev);
           }}>
-          <Text> {isPaused ? 'Resume' : 'Pause'}</Text>
+          <Text style={{color: colors.primaryText}}>
+            {' '}
+            {isPaused ? 'Resume' : 'Pause'}
+          </Text>
         </TouchableOpacity>
         <TouchableOpacity
           activeOpacity={0.8}
@@ -102,12 +107,15 @@ export const Thymer = ({thymer, onDelete}) => {
           style={{
             width: 120,
             paddingVertical: 12,
-            backgroundColor: colors.background,
+            borderWidth: 1,
+            borderColor: colors.background,
             borderRadius: 12,
             alignSelf: 'flex-end',
             alignItems: 'center',
           }}>
-          <Text style={{color: colors.primaryText}}>Delete</Text>
+          <Text>
+            Delete
+          </Text>
         </TouchableOpacity>
       </View>
     </Animated.View>
