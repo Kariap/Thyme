@@ -51,7 +51,7 @@ export const Thymer = ({thymer, onDelete}) => {
                   fontSize: 16,
                   color: colors.primaryText,
                 }}>
-                Expired
+                Time's Up!
               </Text>
             );
           }
