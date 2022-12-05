@@ -62,7 +62,7 @@ export const TimersView = () => {
                 timer: millis,
                 key: Math.random(),
               };
-              thymers.push(timerObj);
+              setThymers([timerObj, ...thymers]);
               //Add timer;
             }}
             onCancelClicked={() => {

@@ -4,13 +4,15 @@ import {useTheme} from '@react-navigation/native';
 import {useEffect, useState} from 'react';
 import moment from 'moment';
 import {Thymer} from '../../../components/Thymer';
-
+import Animated, { EasingNode, Layout } from "react-native-reanimated";
 export const Thymers = ({thymers, onDelete}) => {
   const {colors} = useTheme();
   const styles = makeStyles(colors);
+  const layout = Layout.duration(200);
   return (
     <View style={styles.container}>
-      <FlatList
+      <Animated.FlatList
+        itemLayoutAnimation={layout}
         contentContainerStyle={{
           paddingVertical: 24,
         }}

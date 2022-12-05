@@ -5,12 +5,12 @@ import * as React from 'react';
 import {CountdownCircleTimer} from 'react-native-countdown-circle-timer';
 import {useTheme} from '@react-navigation/native';
 import Animated, {
-  BounceInDown,
+  BounceInDown, BounceInLeft,
   BounceInUp,
-  BounceOut,
+  BounceOut, FadeInUp,
   FadeOut,
-  FadeOutRight,
-} from 'react-native-reanimated';
+  FadeOutRight, Layout,
+} from "react-native-reanimated";
 
 export const Thymer = ({thymer, onDelete}) => {
   const [millis, setMillis] = useState(thymer.timer);
@@ -18,8 +18,8 @@ export const Thymer = ({thymer, onDelete}) => {
   const [isPaused, setIsPaused] = useState(false);
   return (
     <Animated.View
-      entering={BounceInDown.duration(500)}
-      exiting={FadeOutRight.duration(200)}
+      entering={FadeInUp.delay(100).duration(200)}
+      exiting={FadeOut.duration(200)}
       activeOpacity={0.8}
       style={{
         flexDirection: 'row',
