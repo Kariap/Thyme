@@ -6,7 +6,7 @@ import {Thymers} from './Thymers';
 import {ThymerCreator} from './ThymeCreator';
 import {getMilliseconds} from '../../../utils/DateUtils';
 import moment from 'moment';
-
+import Animated, { BounceIn, BounceInUp, FadeInUp, FadeOutUp } from "react-native-reanimated";
 export const TimersView = () => {
   const {colors} = useTheme();
   const styles = makeStyles(colors);
@@ -23,6 +23,7 @@ export const TimersView = () => {
           alignSelf: 'stretch',
           flexDirection: 'row',
           justifyContent: 'space-between',
+          paddingBottom:16,
         }}>
         <Text style={styles.thymerText}>Thymers</Text>
         <TouchableOpacity
@@ -49,7 +50,7 @@ export const TimersView = () => {
         }}
       />
       {showAddThymer && (
-        <View style={styles.creatorModal}>
+        <Animated.View style={styles.creatorModal} entering={FadeInUp.duration(300)}>
           <ThymerCreator
             onAddClicked={(hours, minutes, seconds) => {
               const timerTime = new Date();
@@ -69,7 +70,7 @@ export const TimersView = () => {
               setShowAddThymer(false);
             }}
           />
-        </View>
+        </Animated.View>
       )}
     </View>
   );

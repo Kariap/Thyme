@@ -5,7 +5,6 @@ import {Picker, DatePicker} from 'react-native-wheel-pick';
 import {HOURS_ARRAY, MINUTES_ARRAY} from '../../../utils/Constants';
 import {useState} from 'react';
 import {CustomWheelPicker} from '../../../components/CustomWheelPicker';
-
 export const ThymerCreator = ({thymers, onAddClicked, onCancelClicked}) => {
   const {colors} = useTheme();
   const styles = makeStyles(colors);
